@@ -3,6 +3,10 @@
 init-hook='import sys; sys.path.append(".")'
 extension-pkg-whitelist=pydantic
 load-plugins=pylint_django
+disable=
+    missing-module-docstring,
+    missing-function-docstring,
+    invalid-name
 
 [MESSAGES CONTROL]
 # Only show these errors

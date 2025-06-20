@@ -1,6 +1,12 @@
 from importlib import import_module
 from pathlib import Path
-from .commands import *
+from .commands import (
+    AddCommand,
+    SubtractCommand,
+    MultiplyCommand,
+    DivideCommand,
+    MenuCommand
+)
 
 class CommandManager:
     def __init__(self):
@@ -76,3 +82,9 @@ class Calculator:
             except EOFError:
                 print("\nExiting...")
                 break
+
+def calculate(self, operation, a, b):
+    """Execute a calculation using command pattern"""
+    if operation not in self.command_manager.commands:
+        raise ValueError(f"Unknown operation: {operation}")
+    return self.command_manager.commands[operation].execute(a, b)

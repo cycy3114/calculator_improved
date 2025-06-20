@@ -19,7 +19,6 @@ def main():
         a = sys.argv[1]
         b = sys.argv[2]
         operation = sys.argv[3].lower()
-
         result = calc.calculate(operation, a, b)
         print(result)
     except Exception as e:

@@ -88,3 +88,20 @@ def calculate(self, operation, a, b):
     if operation not in self.command_manager.commands:
         raise ValueError(f"Unknown operation: {operation}")
     return self.command_manager.commands[operation].execute(a, b)
+# Add to test_calculator.py
+def test_repl_interface(monkeypatch):
+    """Test the REPL exit command"""
+    monkeypatch.setattr('builtins.input', lambda _: "exit")
+    calc = Calculator()
+    calc.start_repl()  # Should run without errors
+
+def test_plugin_loading(tmp_path):
+    """Test plugin loading mechanism"""
+    plugin_file = tmp_path / "test_plugin.py"
+    plugin_file.write_text("""
+def register(commands):
+    commands['test'] = lambda a,b: 42
+""")
+    calc = Calculator()
+    assert 'test' in calc.command_manager.commands
+    assert calc.calculate("test", 0, 0) == 42

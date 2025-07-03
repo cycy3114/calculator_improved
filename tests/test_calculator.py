@@ -2,6 +2,7 @@
 import pytest
 from decimal import Decimal, InvalidOperation
 from calculator.calculator import Calculator
+from src.commands.add_command import AddCommand
 
 @pytest.mark.parametrize("first_num,second_num,operation,expected", [
     (10, 5, "add", 15),
